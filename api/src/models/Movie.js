@@ -25,7 +25,7 @@ module.exports = (sequelize) => {
             },
         },
         creationDate: {
-            type: DataTypes.DATEONLY,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 isDate: true,
@@ -35,7 +35,6 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        genreId: DataTypes.INTEGER,
-        userId: DataTypes.UUID,
+
     });
 };

@@ -38,12 +38,14 @@ const { Users, Character, Genre, Movie } = sequelize.models;
 
 Character.belongsToMany(Movie, { through: 'CharacterMovie' });
 Movie.belongsToMany(Character, { through: 'CharacterMovie' });
-Genre.hasMany(Movie);
-Movie.belongsTo(Genre);
-Users.hasMany(Character);
-Character.belongsTo(Users);
-Users.hasMany(Movie);
-Movie.belongsTo(Users);
+Users.belongsToMany(Movie, { through: 'UsersMovie' });
+Movie.belongsToMany(Users, { through: 'UsersMovie' });
+Genre.belongsToMany(Movie, { through: 'GenreMovie' });
+Movie.belongsToMany(Genre, { through: 'GenreMovie' });
+
+
+
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
