@@ -1,12 +1,17 @@
 const { Router } = require('express');
-const movieRoutes = require('./movie')
+const genreRouter = require('./genres');
+const movieRouter = require('./movie')
+const charactersRouter = require('./characters')
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
 
 const router = Router();
-router.use("/movies", movieRoutes);
+router.use("/movies", movieRouter);
+
+router.use("/genres", genreRouter);
+router.use("/characters", charactersRouter);
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 

@@ -12,8 +12,8 @@ module.exports = (sequelize) => {
         title: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
-            validate: {
+          //  unique: true,
+                       validate: {
                 notEmpty: true,
             },
         },

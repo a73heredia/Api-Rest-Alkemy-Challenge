@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
             validate: {
                 notEmpty: true,
             },
-        },
+        }, 
 
     });
 };
