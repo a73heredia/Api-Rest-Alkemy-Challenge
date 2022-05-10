@@ -1,4 +1,4 @@
-const { Character } = require('../../db');
+const { Character ,Movie} = require('../../db');
 
 const characters = [
 
@@ -38,8 +38,25 @@ const getAllCharacters = async (req, res) => {
             history:el.history
 
             }
-    });
-    console.log('yo soy info',info)
+    });  let allMovies = await Movie.findAll({
+        include: [{
+
+          attributes: ['id', 'name'],
+          model: Movie,
+          through: {
+            attributes: []
+          }
+        },
+        /* {
+          attributes: ['id', 'name'],
+          model: Actor,
+          through: {
+            attributes: []
+          }
+
+        } */],
+      })
+    
 
     for (i = 0; i < info.length; i++) {
         await Character.findOrCreate({
