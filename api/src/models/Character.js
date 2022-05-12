@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
       },
     },
     weight: {
-      type: DataTypes.DOUBLE,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     history: {
