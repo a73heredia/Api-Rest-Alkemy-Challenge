@@ -114,9 +114,7 @@ const movies = [
 
 const getAllMovies = async (req, res) => {
     const { title } = req.query;
-    //let allMovies = await getMovies(title);
-    //console.log('yo soy allMovies',allMovies)
-    try {
+      try {
       if (title) {
         let movieByTitle = await Movie.findAll({
           where: {

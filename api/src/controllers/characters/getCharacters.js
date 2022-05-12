@@ -29,46 +29,13 @@ const characters = [
 ]
 
 const getAllCharacters = async (req, res) => {
-    const info = characters.map((el) => {
-        return {
-            name:el.name,
-            image:el.image,
-            age:el.age,
-            weight:el.weight,
-            history:el.history
-
-            }
-    });  let allMovies = await Movie.findAll({
-        include: [{
-
-          attributes: ['id', 'name'],
-          model: Movie,
-          through: {
-            attributes: []
-          }
-        },
-        /* {
-          attributes: ['id', 'name'],
-          model: Actor,
-          through: {
-            attributes: []
-          }
-
-        } */],
-      })
-    
-
-    for (i = 0; i < info.length; i++) {
-        await Character.findOrCreate({
-            where: {
-             name:info[i].name,
-            image:info[i].image,
-            age:info[i].age,
-            weight:info[i].weight,
-            history:info[i].history
-            },
-        });
-    }
+      try {
+    const characters=await Character.findAll() 
+    res.json(characters);
+  } catch (error) {
+    console.log(error.message);
+  }
+  
 }
 
 module.exports = {

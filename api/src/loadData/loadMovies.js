@@ -8,37 +8,37 @@ const movies = [
 
         "creationDate": "2021-12-16",
         "qualification": 6.8,
-
-        "genres": [
-
-            {
-                "id": 878,
-                "name": "Science Fiction"
-            },
-
-            {
-                "id": 28,
-                "name": "Action"
-            },
-
-            {
-                "id": 12,
-                "name": "Adventure"
-            }
-        ],
-
-        "characters": [
-
-            {
-                "id": 4,
-                "name": "Keanu Reeves"
-            },
-
-            {
-                "id": 5,
-                "name": "Carrie-Anne Moss"
-            }
-        ]
+        /*
+                "genres": [
+        
+                    {
+                        "id": 878,
+                        "name": "Science Fiction"
+                    },
+        
+                    {
+                        "id": 28,
+                        "name": "Action"
+                    },
+        
+                    {
+                        "id": 12,
+                        "name": "Adventure"
+                    }
+                ],
+        
+               /* "characters": [
+        
+                    {
+                        "id": 4,
+                        "name": "Keanu Reeves"
+                    },
+        
+                    {
+                        "id": 5,
+                        "name": "Carrie-Anne Moss"
+                    }
+                ]*/
     },
 
     {
@@ -50,27 +50,27 @@ const movies = [
 
         "qualification": 6.2,
 
-
-        "genres": [
-
-            {
-                "id": 27,
-                "name": "Horror"
-            }
-        ],
-
-        "characters": [
-
-            {
-                "id": 45,
-                "name": "Almudena Amor"
-            },
-
-            {
-                "id": 46,
-                "name": "Vera Valdez"
-            }
-        ]
+        /*
+                "genres": [
+        
+                    {
+                        "id": 27,
+                        "name": "Horror"
+                    }
+                ],
+        
+               /* "characters": [
+        
+                    {
+                        "id": 45,
+                        "name": "Almudena Amor"
+                    },
+        
+                    {
+                        "id": 46,
+                        "name": "Vera Valdez"
+                    }
+                ]*/
     },
 
     {
@@ -82,68 +82,67 @@ const movies = [
 
         "qualification": 6,
 
+        /*
+                 "genres": [
+        
+                    {
+                        "id": 28,
+                        "name": "Action"
+                    },
+        
+                    {
+                        "id": 53,
+                        "name": "Thriller"
+                    }
+                ], */
 
-        "genres": [
-
-            {
-                "id": 28,
-                "name": "Action"
-            },
-
-            {
-                "id": 53,
-                "name": "Thriller"
-            }
-        ],
-
-        "characters": [
-
-            {
-                "id": 33,
-                "name": "Liam Neeson"
-            },
-
-            {
-                "id": 34,
-                "name": "Emmy Raver-Lampman"
-            }
-        ]
+        /*   "characters": [
+     
+                 {
+                     "id": 33,
+                     "name": "Liam Neeson"
+                 },
+     
+                 {
+                     "id": 34,
+                     "name": "Emmy Raver-Lampman"
+                 }
+             ]*/
     }
 ]
 
 const loadMovies = async (req, res) => {
-    const info = movies.map((el) => {
-        return {
-            title: el.title,
-            image: el.image,
-            creationDate: el.creationDate,
-            qualification: el.qualification,
-            genres: el.genres.map((g) => { return { name: g } }),
-            characters: el.characters.map((g) => { return { name: g } }) 
-           
-        }
-    });
-
-    
-    for (i = 0; i < info.length; i++) {
-        await Movie.findOrCreate({
-            where: {
-                title: info[i].title,
-                image: info[i].image,
-                creationDate: info[i].creationDate,
-                qualification: info[i].qualification,
-            },
+    try {
+        const info = movies.map((el) => {
+            return {
+                title: el.title,
+                image: el.image,
+                creationDate: el.creationDate,
+                qualification: el.qualification,
+                           }
         });
+        console.log('yo soy info', info)
 
+
+        for (i = 0; i < info.length; i++) {
+            await Movie.findOrCreate({
+                where: {
+                    title: info[i].title,
+                    image: info[i].image,
+                    creationDate: info[i].creationDate,
+                    qualification: info[i].qualification,
+                }
+
+            })
+        };
+           res.send("Base de Datos cargada");
+
+    } catch (error) {
+        console.log(error.message);
     }
-   Genre.forEach(async (g) => {
-        const i = await Movie.findOne({ where: { id: el.id } })
-        await CharacterMovie.findOrCreate({
-            where: { genreId: g, movieId: i.id }
-        })
-    })
-    console.log('yo soy info', info)
 }
+
+
 
 module.exports = {
     loadMovies

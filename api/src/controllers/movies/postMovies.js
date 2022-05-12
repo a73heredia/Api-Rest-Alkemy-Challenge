@@ -1,10 +1,10 @@
 const { Op } = require("sequelize");
-const { Movie } = require('../../db');
+const { Movie ,Genre,Character} = require('../../db');
 
 const postMovies = async (req, res) => {
     try {
-        let { id, title, image, creationDate, qualification } = req.body;
-        let movieCreated = await Movie.create({
+        let { title, image, creationDate, qualification,genres,characters } = req.body;
+        let moviesCreated = await Movie.create({
             title,
             image,
             creationDate,
@@ -12,17 +12,18 @@ const postMovies = async (req, res) => {
         })
         genres.forEach(async (g) => {
             const gr = await Genre.findAll({ where: { name: g } });
+      
+            moviesCreated.addGenre(gr);
+          }) 
+        
+          characters.forEach(async (a) => {
+            const ac = await Character.findAll({ where: { name: { [Op.iLike]: `%${a}%` } } });
 
-            movieCreated.addGenre(gr);
-        })
-
-        characters.forEach(async (a) => {
-            const ac = await characters.findAll({ where: { name: { [Op.iLike]: `%${a}%` } } });
-
-            moviesCreated.addActor(ac)
-        })
-
-        res.status(200).json(movieCreated)
+            moviesCreated.addCharacter(ac)
+        }) 
+        
+        
+        res.status(200).json(moviesCreated)
     } catch (error) {
         console.log(error)
     }

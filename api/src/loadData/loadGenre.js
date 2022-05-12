@@ -114,6 +114,7 @@ const genres = [
 ]
 
 const loadGenre = async (req, res) => {
+    try{
     const info = genres.map((el) => {
         return {
             name: el.name,
@@ -128,6 +129,15 @@ const loadGenre = async (req, res) => {
                 image: info[i].image
             },
         });
-    }}
+    }
+
+
+    res.send("Base de Datos cargada");
+
+} catch (error) {
+    console.log(error.message);
+}
+}
+
 
 module.exports = { loadGenre }

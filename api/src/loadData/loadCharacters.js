@@ -24,6 +24,7 @@ const characters = [
 ]
 
 const loadCharacters = async (req, res) => {
+  try{
   const info = characters.map((el) => {
     return {
       name: el.name,
@@ -47,6 +48,11 @@ const loadCharacters = async (req, res) => {
         history: info[i].history
       },
     });
+
+    res.send("Base de Datos cargada");
+  }
+  } catch (error) {
+      console.log(error.message);
   }
 }
 
