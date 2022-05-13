@@ -4,14 +4,17 @@ const charactersRouter = express.Router();
 const { getAllCharacters } = require('../controllers/characters/getCharacters');
 const { postCharacter } = require('../controllers/characters/postCharacter');
 const { putCharacter } = require('../controllers/characters/putCharacters');
-const{getByIdCharacters}=require('../controllers/characters/getByIdCharacters')
+const{getByIdCharacters}=require('../controllers/characters/getByIdCharacters');
+const { getCharacterName } = require('../controllers/characters/getCharacterName');
+const { getCharacterAge } = require('../controllers/characters/getCharacterAge');
 
 
 
 
-charactersRouter.get('/', getAllCharacters);
+charactersRouter.get('/age', getCharacterAge);
 charactersRouter.post('/', postCharacter);
 charactersRouter.put('/put/:id', putCharacter);
 charactersRouter.get('/:id',getByIdCharacters);
+charactersRouter.get('/',getCharacterName);
 
 module.exports = charactersRouter;

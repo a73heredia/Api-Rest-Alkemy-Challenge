@@ -3,7 +3,7 @@ const { Character } = require("../../db");
 const getByIdCharacters = async (req, res) => {
     try {
         const { id } = req.params
-        console.log('yo soy id', id)
+       // console.log('yo soy id', id)
         const char = await Character.findOne({
             where: { id: id },
         });
@@ -12,7 +12,7 @@ const getByIdCharacters = async (req, res) => {
                 message: "There is no character with this id " + id
             })
         }
-        console.log('yo soy char',char)
+        //console.log('yo soy char',char)
         res.json(char)
 
     } catch (error) {

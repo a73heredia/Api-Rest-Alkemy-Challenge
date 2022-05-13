@@ -30,7 +30,7 @@ const characters = [
 
 const getAllCharacters = async (req, res) => {
   let characters = await Character.findAll()
-  console.log('characters', characters)
+  //console.log('characters', characters)
   try {
     if (characters) {
       let char = await characters.map((e) => {
@@ -38,11 +38,8 @@ const getAllCharacters = async (req, res) => {
           id:e.id,
           name: e.name,
           image: e.image
-        }
-
-      })
-      console.log('characters', char)
-      res.json(char);
+        }})
+          return char;
     }
   } catch (error) {
     console.log(error.message);
