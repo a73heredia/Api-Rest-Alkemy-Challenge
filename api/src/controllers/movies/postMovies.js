@@ -17,9 +17,10 @@ const postMovies = async (req, res) => {
           }) 
         
           characters.forEach(async (a) => {
-            const ac = await Character.findAll({ where: { name: { [Op.iLike]: `%${a}%` } } });
+            const ac = await Character.findAll({ where: { name:a/*  { [Op.iLike]: `%${a}%` } */ } });
 
             moviesCreated.addCharacter(ac)
+            console.log('moviesCreated', moviesCreated)
         }) 
         
         

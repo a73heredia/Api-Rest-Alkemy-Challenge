@@ -151,29 +151,6 @@ const getAllMovies = async (req, res) => {
       console.log(error.message);
     }
   };
-/* 
-const getAllMovies = async (req, res) => {
-    const info = movies.map((el) => {
-        return {
-            title: el.title,
-            image: el.image,
-            creationDate: el.creationDate,
-            qualification: el.qualification
-        }
-    });
-    console.log('yo soy info',info)
-
-    for (i = 0; i < info.length; i++) {
-        await Movie.findOrCreate({
-            where: {
-                title: info[i].title,
-                image: info[i].image,
-                creationDate: info[i].creationDate,
-                qualification: info[i].qualification
-            },
-        });
-    }
-} */
 
 module.exports = {
     getAllMovies,
