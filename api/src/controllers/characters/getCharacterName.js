@@ -13,7 +13,7 @@ const getCharacterName = async (req, res) => {
       let charactersName = await characters.filter(e => e.name.toLowerCase().includes(name.toLowerCase()))
       charactersName.length ?
         res.status(200).send(charactersName) :
-        res.status(404).send("Lo siento, no se encontro el Perrito Buscado");
+        res.status(404).send("Lo siento, no se encontro el character Buscado");
     }
     else {
 
