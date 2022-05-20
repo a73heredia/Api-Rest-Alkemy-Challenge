@@ -7,11 +7,13 @@ const { putCharacter } = require('../controllers/characters/putCharacters');
 const{getByIdCharacters}=require('../controllers/characters/getByIdCharacters');
 const { getCharacterName } = require('../controllers/characters/getCharacterName');
 const { getCharacterAge } = require('../controllers/characters/getCharacterAge');
+const { getCharacterMovie } = require('../controllers/characters/CharacterMovie');
 
 
 
 
 charactersRouter.get('/age', getCharacterAge);
+charactersRouter.get('/movie', getCharacterMovie);
 charactersRouter.post('/', postCharacter);
 charactersRouter.put('/put/:id', putCharacter);
 charactersRouter.get('/:id',getByIdCharacters);
